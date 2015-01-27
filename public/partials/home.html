@@ -1,37 +1,41 @@
-Welcome!
 
-<form class="form-horizontal">
-    <fieldset>
+<div class="container">
 
-        <!-- Form Name -->
-        <legend>Formulario de Canje</legend>
 
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="money">$ Monto</label>
-            <div class="controls">
-                <input id="money" name="money" type="text" placeholder="Ingrese el monto" class="input-xlarge" required="">
+    <form class="form-horizontal">
+        <fieldset>
 
+            <!-- Form Name -->
+            <legend>Canje de tapitas</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Monto</label>
+                <div class="col-md-5">
+                    <input id="textinput" name="textinput" type="text" placeholder="Ingrese el monto" class="form-control input-md">
+
+                </div>
             </div>
-        </div>
 
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="tapitas">Tapitas</label>
-            <div class="controls">
-                <input id="tapitas" name="tapitas" type="text" placeholder="Ingrese cantidad de tapitas" class="input-xlarge" required="">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Tapitas</label>
+                <div class="col-md-5">
+                    <input id="textinput" name="textinput" type="text" placeholder="Ingrese las tapitas" class="form-control input-md">
 
+                </div>
             </div>
-        </div>
 
-        <!-- Button (Double) -->
-        <div class="control-group">
-            <label class="control-label" for="button1id"></label>
-            <div class="controls">
-                <button id="button1id" name="button1id" class="btn btn-success">Guardar</button>
-                <button id="button2id" name="button2id" class="btn btn-default">Cancelar</button>
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="button1id"></label>
+                <div class="col-md-8">
+                    <button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
+                    <button id="button2id" name="button2id" class="btn btn-default">Cancelar</button>
+                </div>
             </div>
-        </div>
 
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
+
+</div>
