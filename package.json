@@ -1,0 +1,22 @@
+{
+  "name": "Nahual_CanjeTapas",
+  "version": "0.0.0",
+  "description": "Nahual app canje de tapas | Uruguay 2015",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NahualUY/CanjeTapas.git"
+  },
+  "author": "nahual",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NahualUY/CanjeTapas/issues"
+  },
+  "homepage": "https://github.com/NahualUY/CanjeTapas",
+  "dependencies": {
+    "express": "^4.11.1"
+  }
+}
