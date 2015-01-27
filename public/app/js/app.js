@@ -18,5 +18,15 @@ app.config(['$routeProvider',
 
 app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    console.log("HomeCtrl");
+    $scope.item = {};
+
+    $scope.sendForm = function () {
+        //TODO change for real function
+        alert('monto=' + $scope.item.monto + " tapitas=" + $scope.item.tapitas);
+    };
+
+    $scope.cancelForm = function () {
+        //TODO change for real function
+        alert("btn cancel");
+    };
 }]);

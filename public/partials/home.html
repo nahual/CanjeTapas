@@ -12,7 +12,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="textinput">Monto</label>
                 <div class="col-md-5">
-                    <input id="textinput" name="textinput" type="text" placeholder="Ingrese el monto" class="form-control input-md">
+                    <input id="textinput" ng-model="item.monto" name="textinput" type="text" placeholder="Ingrese el monto" class="form-control input-md">
 
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="textinput">Tapitas</label>
                 <div class="col-md-5">
-                    <input id="textinput" name="textinput" type="text" placeholder="Ingrese las tapitas" class="form-control input-md">
+                    <input id="textinput" ng-model="item.tapitas" name="textinput" type="text" placeholder="Ingrese las tapitas" class="form-control input-md">
 
                 </div>
             </div>
@@ -30,8 +30,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="button1id"></label>
                 <div class="col-md-8">
-                    <button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
-                    <button id="button2id" name="button2id" class="btn btn-default">Cancelar</button>
+                    <button id="button1id" name="button1id" ng-click="sendForm()" class="btn btn-success">Enviar</button>
+                    <button id="button2id" name="button2id" ng-click="cancelForm()" class="btn btn-default">Cancelar</button>
                 </div>
             </div>
 
