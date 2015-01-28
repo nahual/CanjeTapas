@@ -24,5 +24,5 @@ app.use(express.static(__dirname + '/public'));
 var server = app.listen(PORT, function () {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Started server at ' + host + ':' + port);
+    console.log('Started server at http://' + host + ':' + port);
 });
