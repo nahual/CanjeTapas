@@ -19,14 +19,18 @@ app.config(['$routeProvider',
 app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.item = {};
+    $scope.message = {};
 
     $scope.sendForm = function () {
         //TODO change for real function
-        alert('monto=' + $scope.item.monto + " tapitas=" + $scope.item.tapitas);
+
+        $scope.message.error = null;
+        $scope.message.success = "Tienes " + $scope.item.monto + " $ y " + $scope.item.tapitas + " tapitas";
     };
 
     $scope.cancelForm = function () {
-        //TODO change for real function
-        alert("btn cancel");
+        //TODO change for real function or let it be :)
+        $scope.message.success = null;
+        $scope.message.error = "Ha ocurrido un error inesperado";
     };
 }]);

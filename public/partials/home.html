@@ -36,6 +36,13 @@
             </div>
 
         </fieldset>
+
+        <div class="alert alert-success" ng-show="message.success">
+            {{message.success}}
+        </div>
+        <div class="alert alert-danger" ng-show="message.error">
+            {{message.error}}
+        </div>
     </form>
 
 </div>
