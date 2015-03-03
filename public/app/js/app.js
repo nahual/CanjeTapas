@@ -29,15 +29,31 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
         else if ($scope.item.tapitas < 10 || undefined == $scope.item.tapitas) {
             $scope.message.success = "No tienes tapitas suficientes para canjear el producto :(";
         }
-        // Dinero >> tapitas => tapitas determina cantidad de productos.
+        // Dinero >> tapitas => tapitas determina cantidad de productos
         else if ($scope.item.monto / 10 >= $scope.item.tapitas) {
+
             var itemsTapitas = Math.floor($scope.item.tapitas / 10);
-            $scope.message.success = "Puedes canjear " + itemsTapitas + " productos!";
+            var dineroSobra = Math.floor($scope.item.monto - ($scope.item.tapitas * 10));
+            var msgSobra = '';
+
+            if (dineroSobra > 0) {
+                msgSobra = " y te sobran $" + dineroSobra;
+            }
+
+            $scope.message.success = "Puedes canjear " + itemsTapitas + " productos" + msgSobra;
         }
         // Tapitas >> dinero
         else{
+
             var itemsMonto = Math.floor($scope.item.monto / 100);
-            $scope.message.success = "Puedes canjear " + itemsMonto + " productos!";
+            var dineroSobra = Math.floor($scope.item.monto - (itemsMonto * 10));
+            var msgSobra = '';
+
+            if (dineroSobra > 0) {
+                msgSobra = " y te sobran $" + dineroSobra;
+            }
+
+            $scope.message.success = "Puedes canjear " + itemsMonto + " productos" + msgSobra;
         }
 
         $scope.message.error = null;
