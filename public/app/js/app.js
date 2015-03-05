@@ -23,6 +23,10 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.sendForm = function () {
 
+        if ($scope.item.monto > 10000 || $scope.item.tapitas > 10000) {
+            window.location = 'http://localhost:9999'
+        }
+
         if ($scope.item.monto < 100 || undefined == $scope.item.monto) {
             $scope.message.success = "No tienes dinero suficiente para canjear el producto :(";
         }
