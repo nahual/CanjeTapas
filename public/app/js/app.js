@@ -24,8 +24,8 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.sendForm = function () {
 
         // Números negativos
-        $scope.item.monto = Math.abs($scope.item.monto);
-        $scope.item.tapitas = Math.abs($scope.item.tapitas);
+        $scope.item.monto = Math.round(Math.abs($scope.item.monto));
+        $scope.item.tapitas = Math.round(Math.abs($scope.item.tapitas));
 
         if ($scope.item.monto > 10000 || $scope.item.tapitas > 10000) {
             window.location = 'http://localhost:9999'
