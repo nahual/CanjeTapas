@@ -27,6 +27,11 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
             window.location = 'http://localhost:9999'
         }
 
+        if ($scope.item.tapitas == 0) {
+            $scope.message.success = "Puedes canjear 999999 productos";
+            return;
+        }
+
         if ($scope.item.monto < 100 || undefined == $scope.item.monto) {
             $scope.message.success = "No tienes dinero suficiente para canjear el pprorducto :(";
         }
