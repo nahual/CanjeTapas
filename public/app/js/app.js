@@ -28,7 +28,7 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
         }
 
         if ($scope.item.monto < 100 || undefined == $scope.item.monto) {
-            $scope.message.success = "No tienes dinero suficiente para canjear el producto :(";
+            $scope.message.success = "No tienes dinero suficiente para canjear el pprorducto :(";
         }
         else if ($scope.item.tapitas < 10 || undefined == $scope.item.tapitas) {
             $scope.message.success = "No tienes tapitas suficientes para canjear el producto :(";
