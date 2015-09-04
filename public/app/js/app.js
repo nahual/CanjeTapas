@@ -15,6 +15,9 @@ app.config(['$routeProvider',
             });
     }]);
 
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
@@ -22,35 +25,49 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.message = {};
 
     $scope.sendForm = function () {
+        $scope.message.success = null;
+        $scope.message.error = null;
 
-        // Números negativos
-        $scope.item.monto = Math.round(Math.abs($scope.item.monto));
-        $scope.item.tapitas = Math.round(Math.abs($scope.item.tapitas));
+        var sobran = [];
 
-        if ($scope.item.monto > 10000 || $scope.item.tapitas > 10000) {
-            window.location = 'http://localhost:9999'
+        if (!isNumeric($scope.item.tapitas)){
+            $scope.message.error = "La cantidad de tapas no es un número";
+            return
         }
 
-        if ($scope.item.tapitas == 0) {
-            $scope.message.success = "Puedes canjear 999999 productos";
-            return;
+        if (!isNumeric($scope.item.monto)){
+            $scope.message.error = "El monto no es un número";
+            return
         }
 
         if ($scope.item.monto < 100 || undefined == $scope.item.monto) {
-            $scope.message.success = "No tienes dinero suficiente para canjear el pprorducto :(";
+            $scope.message.success = "No tienes dinero suficiente para canjear el producto :(";
         }
         else if ($scope.item.tapitas < 10 || undefined == $scope.item.tapitas) {
-            $scope.message.success = "No tienes dinero suficientes para canjear el producto :(";
+            $scope.message.success = "No tienes tapitas suficientes para canjear el producto :(";
+        }
+        else if ($scope.item.monto > 10000) {
+            $scope.message.success = "Con tanta plata, mejor usala para otra cosa... no canjeamos más de $10.000";
+        }
+        else if ($scope.item.tapitas > 10000) {
+            $scope.message.success = "No se aceptan canjes con más de 10.000 tapitas";
         }
         // Dinero >> tapitas => tapitas determina cantidad de productos (sobra dinero)
         else if ($scope.item.monto / 10 >= $scope.item.tapitas) {
 
             var itemsTapitas = Math.floor($scope.item.tapitas / 10);
-            var dineroSobra = Math.floor($scope.item.monto - ($scope.item.tapitas * 10));
+            var dineroSobra = Math.floor($scope.item.monto - (itemsTapitas * 100));
+            var tapitasSobra = $scope.item.tapitas - itemsTapitas * 10;
             var msgSobra = '';
 
             if (dineroSobra > 0) {
-                msgSobra = " y te sobran $" + dineroSobra;
+                msgSobra = ", te sobran $" + dineroSobra;
+                if (tapitasSobra > 0) {
+                    msgSobra += " y";
+                }
+            }
+            if (tapitasSobra > 0) {
+                msgSobra += " te sobran " + tapitasSobra + " tapitas";
             }
 
             $scope.message.success = "Puedes canjear " + itemsTapitas + " productos" + msgSobra;
@@ -60,10 +77,17 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
             var itemsMonto = Math.floor($scope.item.monto / 100);
             var tapitasSobra = Math.floor($scope.item.tapitas - (itemsMonto * 10));
+            var dineroSobra = $scope.item.monto - itemsMonto * 100;
             var msgSobra = '';
 
+            if (dineroSobra > 0) {
+                msgSobra = ", te sobran $" + dineroSobra;
+                if (tapitasSobra > 0) {
+                    msgSobra += " y";
+                }
+            }
             if (tapitasSobra > 0) {
-                msgSobra = " y te sobran " + tapitasSobra + " tapitas";
+                msgSobra += " te sobran " + tapitasSobra + " tapitas";
             }
 
             $scope.message.success = "Puedes canjear " + itemsMonto + " productos" + msgSobra;
@@ -74,8 +98,9 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
     };
 
     $scope.cancelForm = function () {
-        //TODO change for real function or let it be :)
+        $scope.item.monto = '';
+        $scope.item.tapitas = '';
+        $scope.message.error = null;
         $scope.message.success = null;
-        $scope.message.error = "Ha ocurrido un error inesperado";
     };
 }]);
