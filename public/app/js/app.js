@@ -45,14 +45,29 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
             return
         }
 
-        var canje_envases = Math.min(Math.floor($scope.item.monto / 150), Math.floor($scope.item.envases / 5));
-        var dinero_sobrante = $scope.item.monto - canje_envases * 150;
-        var canjes_tapas = Math.min(Math.floor(dinero_sobrante / 100), Math.floor($scope.item.tapitas / 10));
-        var max_actual = [canjes_tapas, canje_envases];
+        var maximo_canje_tapas = Math.min(Math.floor($scope.item.monto / 100), Math.floor($scope.item.tapitas / 10));
+        var maximo_canje_envases = Math.min(Math.floor($scope.item.monto / 150), Math.floor($scope.item.envases / 5));
+        var max_actual = [0, 0]; //aca guardo los canjes hechos con tapas y los hechos con envases
+
+        for (i = 0; i <= maximo_canje_tapas; i++){
+            var dinero_sobrante = $scope.item.monto - i * 100;
+            var canjes_envases = Math.min(Math.floor(dinero_sobrante / 150), Math.floor($scope.item.envases / 5));
+            if (max_actual[0] + max_actual[1] < i + canjes_envases) {
+                max_actual = [i, canjes_envases]
+            }
+        }
+
+        for (i = 0; i <= maximo_canje_envases; i++){
+            var dinero_sobrante = $scope.item.monto - i * 150;
+            var canjes_tapas = Math.min(Math.floor(dinero_sobrante / 100), Math.floor($scope.item.tapitas / 10));
+            if (max_actual[0] + max_actual[1] < i + canjes_tapas) {
+                max_actual = [canjes_tapas, i]
+            }
+        }
 
         var vuelto_dinero = $scope.item.monto - max_actual[0] * 100 - max_actual[1] * 150;
-        var vuelto_tapas = $scope.item.envases - max_actual[1] * 5;
-        var vuelto_envases = $scope.item.tapitas - max_actual[0] * 10;
+        var vuelto_tapas = $scope.item.tapitas - max_actual[0] * 10;
+        var vuelto_envases = $scope.item.envases - max_actual[1] * 5;
 
         var vuelto = [];
         if (vuelto_dinero > 0) {
@@ -79,7 +94,9 @@ app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
     };
 
     $scope.cancelForm = function () {
-        $scope.message.error = "Ha ocurrido un error inesperado";
+        $scope.item.monto = '';
+        $scope.item.tapitas = '';
+        $scope.message.error = null;
         $scope.message.success = null;
     };
 }]);
