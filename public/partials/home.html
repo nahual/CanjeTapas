@@ -2,7 +2,7 @@
 <div class="container">
 
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-submit="sendForm()">
         <fieldset>
 
             <!-- Form Name -->
@@ -10,18 +10,27 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Monto</label>
+                <label class="col-md-4 control-label" for="dinero">Monto</label>
                 <div class="col-md-5">
-                    <input id="textinput" ng-model="item.monto" name="textinput" type="text" placeholder="Ingrese el monto" class="form-control input-md">
+                    <input id="dinero" ng-model="item.monto" name="textinput" type="text" placeholder="Ingrese el monto" class="form-control input-md">
 
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Tapitas</label>
+                <label class="col-md-4 control-label" for="tapas">Tapitas Pepsi</label>
                 <div class="col-md-5">
-                    <input id="textinput" ng-model="item.tapitas" name="textinput" type="text" placeholder="Ingrese las tapitas" class="form-control input-md">
+                    <input id="tapas" ng-model="item.tapitas" name="textinput" type="text" placeholder="Ingrese las tapitas" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="envases">Envases Lays</label>
+                <div class="col-md-5">
+                    <input id="envases" ng-model="item.envases" name="textinput" type="text" placeholder="Ingrese la cantidad de envases" class="form-control input-md">
 
                 </div>
             </div>
@@ -30,9 +39,12 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="button1id"></label>
                 <div class="col-md-8">
-                    <button id="button1id" name="button1id" ng-click="sendForm()" class="btn btn-success">Enviar</button>
-                    <button id="button2id" name="button2id" ng-click="cancelForm()" class="btn btn-default">Cancelar</button>
+                    <button id="button1id" name="button1id" class="btn btn-success" type="button">Enviar</button>
+                    <button id="button2id" name="button2id" ng-click="cancelForm()" class="btn btn-default" type="button">Cancelar</button>
                 </div>
+            </div>
+            <div style="display: none">
+                <button type="submit"></button>
             </div>
 
         </fieldset>
